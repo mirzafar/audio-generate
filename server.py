@@ -5,7 +5,7 @@ import uuid
 import scipy
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
 
-from db import db
+from httpclient import request
 from settings import settings
 from tgclient import tgclient
 
@@ -37,31 +37,32 @@ async def generate(order):
         }
     )
 
-    await db.fetchrow(
-        '''
-        UPDATE public.orders 
-        SET status = 1
-        WHERE id = $1
-        ''',
-        order['id']
+    await request(
+        method='POST',
+        url='https://art.ttshop.kz/orders/',
+        json={
+            'action': 'done',
+            'order': {
+                'id': order['id'],
+                'path': f'{uid[:2]}/{uid[2:4]}/{uid}.mp3'
+            }
+        }
     )
 
 
 async def main():
-    await db.initialize(loop=loop)
     while True:
-        order = await db.fetchrow(
-            '''
-            SELECT *
-            FROM public.orders
-            WHERE status = 0
-            '''
+        success, data = await request(
+            method='GET',
+            url='https://art.ttshop.kz/orders/'
         )
-        if not order:
-            await asyncio.sleep(2)
-            continue
 
-        loop.create_task(generate(order))
+        if success and data and data.get('success'):
+            if not data.get('order'):
+                await asyncio.sleep(2)
+                continue
+
+        loop.create_task(generate(data['order']))
         await asyncio.sleep(2)
 
 
