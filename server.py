@@ -57,7 +57,7 @@ async def main():
             method='get',
             url='https://art.ttshop.kz/orders?action=get_orders'
         )
-        print('success', success)
+        print('data', data)
 
         if success and data and data.get('_success'):
             if not data.get('order'):
@@ -66,7 +66,7 @@ async def main():
             print('main stat generate')
             loop.create_task(generate(data['order']))
 
-        await asyncio.sleep(4)
+        await asyncio.sleep(15)
 
 
 loop = asyncio.get_event_loop()
