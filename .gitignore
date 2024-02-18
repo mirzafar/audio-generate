@@ -1,0 +1,35 @@
+*.sublime-project
+*.sublime-workspace
+
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+test*.py
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.idea
+Pipfile.lock
+local_settings.py
+.DS_Store
+
+*.png
+*.mp3
+*.wav
+.idea/
