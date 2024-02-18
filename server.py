@@ -61,6 +61,7 @@ async def main():
 
         if success and data and data.get('_success'):
             if not data.get('order'):
+                await asyncio.sleep(15)
                 continue
 
             print('main stat generate')
