@@ -52,10 +52,12 @@ async def generate(order):
 
 async def main():
     while True:
+        print('-->>')
         success, data = await request(
             method='get',
             url='https://art.ttshop.kz/orders?action=get_orders'
         )
+        print('success', success)
 
         if success and data and data.get('_success'):
             if not data.get('order'):
