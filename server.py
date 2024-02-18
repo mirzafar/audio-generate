@@ -5,7 +5,7 @@ import uuid
 import scipy
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
 
-from db import mongo
+from db import db
 from settings import settings
 from tgclient import tgclient
 
@@ -37,15 +37,26 @@ async def generate(order):
         }
     )
 
-    await mongo.orders.update_one({'_id': order['_id']}, {'$set': {
-        'status': 1
-    }})
+    await db.fetchrow(
+        '''
+        UPDATE public.orders 
+        SET status = 1
+        WHERE id = $1
+        ''',
+        order['id']
+    )
 
 
 async def main():
-    mongo.initialize(loop=loop)
+    await db.initialize(loop=loop)
     while True:
-        order = await mongo.orders.find_one({'status': 0})
+        order = await db.fetchrow(
+            '''
+            SELECT *
+            FROM public.orders
+            WHERE status = 0
+            '''
+        )
         if not order:
             await asyncio.sleep(2)
             continue
