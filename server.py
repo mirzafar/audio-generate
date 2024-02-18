@@ -61,12 +61,12 @@ async def main():
 
         if success and data and data.get('_success'):
             if not data.get('order'):
-                await asyncio.sleep(2)
                 continue
 
             print('main stat generate')
             loop.create_task(generate(data['order']))
-            await asyncio.sleep(2)
+
+        await asyncio.sleep(2)
 
 
 loop = asyncio.get_event_loop()
