@@ -54,7 +54,7 @@ async def main():
     while True:
         success, data = await request(
             method='GET',
-            url='https://art.ttshop.kz/orders/'
+            url='https://art.ttshop.kz/orders?action=get_orders'
         )
 
         if success and data and data.get('_success'):
