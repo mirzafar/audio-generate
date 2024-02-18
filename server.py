@@ -66,7 +66,7 @@ async def main():
             print('main stat generate')
             loop.create_task(generate(data['order']))
 
-        await asyncio.sleep(2)
+        await asyncio.sleep(4)
 
 
 loop = asyncio.get_event_loop()
