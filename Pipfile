@@ -8,6 +8,7 @@ transformers = "*"
 scipy = "*"
 torchvision = "*"
 motor = "*"
+aiohttp = "*"
 
 [dev-packages]
 
