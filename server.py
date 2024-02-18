@@ -38,7 +38,7 @@ async def generate(order):
     )
 
     await request(
-        method='POST',
+        method='post',
         url='https://art.ttshop.kz/orders/',
         json={
             'action': 'done',
@@ -53,7 +53,7 @@ async def generate(order):
 async def main():
     while True:
         success, data = await request(
-            method='GET',
+            method='get',
             url='https://art.ttshop.kz/orders?action=get_orders'
         )
 
