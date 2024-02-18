@@ -57,7 +57,7 @@ async def main():
             url='https://art.ttshop.kz/orders/'
         )
 
-        if success and data and data.get('success'):
+        if success and data and data.get('_success'):
             if not data.get('order'):
                 await asyncio.sleep(2)
                 continue
