@@ -63,7 +63,7 @@ async def generate(playlist, client):
                 'duration': 15,
                 'temperature': 1,
                 'continuation': False,
-                'model_version': 'stereo-large',
+                'model_version': 'melody',
                 'output_format': 'mp3',
                 'continuation_start': 0,
                 'multi_band_diffusion': False,
