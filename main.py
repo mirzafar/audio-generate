@@ -71,13 +71,7 @@ async def generate(playlist, client):
                 'classifier_free_guidance': 3
             }
         )
-        await tgclient.api_call(
-            method_name='sendAudio',
-            payload={
-                'chat_id': playlist['chat_id'],
-                'audio': str(output)
-            }
-        )
+
     except (Exception,):
         tune = await db.fetchrow(
             '''
