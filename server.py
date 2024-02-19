@@ -35,7 +35,7 @@ async def generate(order):
     form_data.add_field('file', open(f'{root_dir}/{uid}.mp3', 'rb'))
 
     success, data = await request(
-        method='get',
+        method='post',
         url='https://art.ttshop.kz/api/upload/',
         data=form_data
     )
