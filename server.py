@@ -1,3 +1,4 @@
+import logging
 import asyncio
 import os
 import uuid
@@ -37,7 +38,7 @@ async def generate(order):
     #         'photo': f'{settings["base_url"]}/static/uploads/{uid[:2]}/{uid[2:4]}/{uid}.mp3'
     #     }
     # )
-    print(
+    logging.debug(
         await tgclient.api_call(
             method_name='sendMessage',
             payload={
@@ -62,19 +63,19 @@ async def generate(order):
 
 async def main():
     while True:
-        print('-->>')
+        logging.debug('-->>')
         success, data = await request(
             method='get',
             url='https://art.ttshop.kz/orders?action=get_orders'
         )
-        print('data', data)
+        logging.debug('data', data)
 
         if success and data and data.get('_success'):
             if not data.get('order'):
                 await asyncio.sleep(15)
                 continue
 
-            print('main stat generate')
+            logging.debug('main stat generate')
             loop.create_task(generate(data['order']))
 
         await asyncio.sleep(15)
