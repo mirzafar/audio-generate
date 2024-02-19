@@ -52,25 +52,34 @@ async def main():
         await asyncio.sleep(5)
 
 
+async def func_replicate(client, words) -> str:
+    return await client.async_run(
+        'meta/musicgen:b05b1dff1d8c6dc63d14b0cdb42135378dcb87f6373b0d3d341ede46e59e2b38',
+        input={
+            'top_k': 250,
+            'top_p': 0,
+            'prompt': ', '.join(words),
+            'duration': 15,
+            'temperature': 1,
+            'continuation': False,
+            'model_version': 'melody-large',
+            'output_format': 'mp3',
+            'continuation_start': 0,
+            'multi_band_diffusion': False,
+            'normalization_strategy': 'peak',
+            'classifier_free_guidance': 3
+        }
+    )
+
+
 async def generate(playlist, client):
     try:
-        output = await client.async_run(
-            'meta/musicgen:b05b1dff1d8c6dc63d14b0cdb42135378dcb87f6373b0d3d341ede46e59e2b38',
-            input={
-                'top_k': 250,
-                'top_p': 0,
-                'prompt': ', '.join(playlist['words']),
-                'duration': 15,
-                'temperature': 1,
-                'continuation': False,
-                'model_version': 'melody',
-                'output_format': 'mp3',
-                'continuation_start': 0,
-                'multi_band_diffusion': False,
-                'normalization_strategy': 'peak',
-                'classifier_free_guidance': 3
-            }
+        output = await asyncio.wait_for(
+            func_replicate(client, playlist['words']),
+            timeout=60 * 4
         )
+        if not output:
+            raise ()
 
     except (Exception,):
         tune = await db.fetchrow(
