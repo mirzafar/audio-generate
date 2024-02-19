@@ -36,6 +36,14 @@ async def main():
         )
 
         if order:
+            await db.fetchrow(
+                '''
+                UPDATE public.orders
+                SET status = 1
+                WHERE id = $1
+                ''',
+                order['id'],
+            )
             loop.create_task(generate(order, client))
 
         await asyncio.sleep(5)
@@ -63,7 +71,7 @@ async def generate(order, client):
     await db.fetchrow(
         '''
         UPDATE public.orders
-        SET status = 1, url = $2
+        SET status = 2, url = $2
         WHERE id = $1
         ''',
         order['id'],
