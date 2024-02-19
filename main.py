@@ -60,7 +60,7 @@ async def generate(playlist, client):
                 'top_k': 250,
                 'top_p': 0,
                 'prompt': ', '.join(playlist['words']),
-                'duration': 10,
+                'duration': 15,
                 'temperature': 1,
                 'continuation': False,
                 'model_version': 'stereo-large',
