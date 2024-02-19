@@ -59,11 +59,11 @@ async def generate(order, client):
             'duration': 10,
             'temperature': 1,
             'continuation': False,
-            'model_version': "stereo-large",
-            'output_format': "mp3",
+            'model_version': 'stereo-large',
+            'output_format': 'mp3',
             'continuation_start': 0,
             'multi_band_diffusion': False,
-            'normalization_strategy': "peak",
+            'normalization_strategy': 'peak',
             'classifier_free_guidance': 3
         }
     )
