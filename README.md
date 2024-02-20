@@ -1,6 +1,6 @@
 Commands to start the project:
 
-    git clone https://github.com/mirzafar/art-therapy
+    git clone https://github.com/mirzafar/audio-generate
 
     pipenv install --python 3.8
 
