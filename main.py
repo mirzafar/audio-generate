@@ -24,7 +24,7 @@ class App:
 
 
 async def main():
-    client = Client(api_token='r8_agYdIyP42udjzCiMulRpAEdB4jLPrvw2DbB8v')
+    client = Client(api_token=settings['api_token'])
     await db.initialize(App(), loop)
     await cache.initialize(loop)
 

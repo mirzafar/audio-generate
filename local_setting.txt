@@ -10,8 +10,10 @@ settings = {
         'password': '1234'
     },
 
+    'api_token': '',  #  token https://replicate.com/
+
     'tg': {
-        'token': '6850733532:AAEQjdLvbOfq3ucHteohZ0Akn2rBr-MhChw',
+        'token': '',  # telegram token
     },
 
     'redis': 'redis://127.0.0.1:6379',
