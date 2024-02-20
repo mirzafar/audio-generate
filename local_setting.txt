@@ -1,0 +1,21 @@
+import os
+
+settings = {
+    'base_url': 'https://art.ttshop.kz',
+    'db': {
+        'host': '127.',
+        'database': 'art-therapy',
+        'port': 5432,
+        'user': 'postgres',
+        'password': '1234'
+    },
+
+    'tg': {
+        'token': '6850733532:AAEQjdLvbOfq3ucHteohZ0Akn2rBr-MhChw',
+    },
+
+    'redis': 'redis://127.0.0.1:6379',
+    'mq': 'amqp://guest:guest@127.0.0.1/',
+    'root_dir': os.path.dirname(os.path.abspath(__file__)),
+    'file_path': '/'.join(os.path.dirname(os.path.abspath(__file__)).split('/')[:-1])
+}

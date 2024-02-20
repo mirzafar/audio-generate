@@ -57,18 +57,6 @@ async def generate(order):
             }
         )
 
-    # await request(
-    #     method='post',
-    #     url='https://art.ttshop.kz/orders/',
-    #     json={
-    #         'action': 'done',
-    #         'order': {
-    #             'id': order['id'],
-    #             'path': f'{uid[:2]}/{uid[2:4]}/{uid}.mp3'
-    #         }
-    #     }
-    # )
-
 
 async def main():
     while True:
